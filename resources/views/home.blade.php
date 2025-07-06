@@ -22,8 +22,13 @@
                     <li><a href="" class="hover:underline">About us</a></li>
                     <li><a href="" class="hover:underline">Product</a></li>
                     <li><a href="" class="hover:underline">Contact us</a></li>
-                    <li><a href="" class="hover:underline">Jadi Mitra</a></li>
-                    <li><a href="" class="hover:underline">Login</a></li>
+                    @auth
+                        <li><a href="{{ route('registrasi.mitra') }}" class="hover:underline">Jadi Mitra</a></li>
+                        <li><a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}" class="hover:underline">Login</a></li>
+                        <li><a href="{{ route('registrasi.mitra') }}" class="hover:underline">Jadi Mitra</a></li>
+                    @endauth
                 </ul>
             </div>
         </nav>
@@ -107,57 +112,27 @@
             <h3 class="text-3xl text-center font-bold">Produk Kami</h3>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-                <a href="#"
-                    class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <img src="{{ asset('images/food/1.png') }}" alt="Pastel Ayam (Rogout)"
-                        class="w-full h-44 object-cover group-hover:opacity-90 transition-opacity duration-300">
-                    <div class="p-5">
-                        <h4
-                            class="text-lg font-bold mb-1 text-gray-900 group-hover:text-[#B81B33] transition-colors duration-300">
-                            Pastel Ayam (Rogout)</h4>
-                        <p class="text-gray-500 text-sm">Pastel goreng dengan isian rogout.</p>
-                    </div>
-                </a>
-                <a href="#"
-                    class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <img src="{{ asset('images/food/1.png') }}" alt="Pastel Suun"
-                        class="w-full h-44 object-cover group-hover:opacity-90 transition-opacity duration-300">
-                    <div class="p-5">
-                        <h4
-                            class="text-lg font-bold mb-1 text-gray-900 group-hover:text-[#B81B33] transition-colors duration-300">
-                            Pastel Suun</h4>
-                        <p class="text-gray-500 text-sm">Pastel goreng dengan isian rogout ditambah suun.</p>
-                    </div>
-                </a>
-                <a href="#"
-                    class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <img src="{{ asset('images/food/1.png') }}" alt="Pastel Suun"
-                        class="w-full h-44 object-cover group-hover:opacity-90 transition-opacity duration-300">
-                    <div class="p-5">
-                        <h4
-                            class="text-lg font-bold mb-1 text-gray-900 group-hover:text-[#B81B33] transition-colors duration-300">
-                            Pastel Suun</h4>
-                        <p class="text-gray-500 text-sm">Pastel goreng dengan isian rogout ditambah suun.</p>
-                    </div>
-                </a>
-                <a href="#"
-                    class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <img src="{{ asset('images/food/1.png') }}" alt="Pastel Suun"
-                        class="w-full h-44 object-cover group-hover:opacity-90 transition-opacity duration-300">
-                    <div class="p-5">
-                        <h4
-                            class="text-lg font-bold mb-1 text-gray-900 group-hover:text-[#B81B33] transition-colors duration-300">
-                            Pastel Suun</h4>
-                        <p class="text-gray-500 text-sm">Pastel goreng dengan isian rogout ditambah suun.</p>
-                    </div>
-                </a>
+                @foreach ($produks as $produk)
+                    <a href="{{ route('show.product', $produk->id) }}"
+                        class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                        <img src="{{ $produk->foto_produk }}" alt="Pastel Ayam (Rogout)"
+                            class="w-full h-44 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-5">
+                            <h4
+                                class="text-lg font-bold mb-1 text-gray-900 group-hover:text-[#B81B33] transition-colors duration-300">
+                                {{ $produk->nama_produk }}
+                            </h4>
+                            <p class="text-gray-500 text-sm">{{ $produk->deskripsi }}</p>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
 
     @push('scripts')
         <script>
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const navbar = document.getElementById('main-navbar');
                 if (window.scrollY > 30) {
                     navbar.classList.remove('bg-none');

@@ -1,6 +1,8 @@
 <header class="bg-white sticky top-0 z-50 transition-all duration-300">
     <div class="container mx-auto py-5 flex items-center justify-between">
-        <img class="md:w-1/8 w-1/4" src="{{ asset('images/logo.png') }}" alt="">
+        <a class="md:w-1/8 w-1/4" href="/">
+            <img src="{{ asset('images/logo.png') }}" alt="logo">
+        </a>
 
         <nav>
             <ul class="flex space-x-6 items-center md:flex-row flex-col">
