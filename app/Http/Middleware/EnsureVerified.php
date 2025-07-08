@@ -7,31 +7,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class RoleMiddleware
+class EnsureVerified
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
             abort(403, 'Access Denied: You are not logged in.');
         }
 
         $user = Auth::user();
-
-        if ($user->role === 'admin') {
-            return $next($request);
+        if ($user->mitra->status_verifikasi !== 'Terverifikasi') {
+            abort(403, 'Access Denied: Your account is not verified.');
         }
 
-        foreach ($roles as $role) {
-            if ($user->role === $role) {
-                return $next($request);
-            }
-        }
-
-        abort(403, 'Unauthorized Action: You do not have the required role.');
+        return $next($request);
     }
 }

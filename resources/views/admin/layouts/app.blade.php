@@ -21,10 +21,17 @@
 
             {{-- Top Navbar --}}
             <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6">
-                <h1 class="font-semibold text-lg">Admin Dashboard</h1>
+                <h1 class="font-semibold text-lg">{{ Auth::user()->role === 'admin' ? 'Admin' : 'Mitra' }} Dashboard
+                </h1>
                 <div class="flex items-center space-x-4">
-                    <span class="text-sm">Hi, Admin</span>
-                    <a href="#" class="text-blue-500 hover:underline">Logout</a>
+                    <span class="text-sm">Hi, {{ Auth::user()->name }}</span>
+                    <a href="{{ route('logout') }}" class="text-blue-500 hover:underline"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
                 </div>
             </header>
 
@@ -35,7 +42,9 @@
                 @hasSection('breadcrumb')
                     <nav class="text-sm text-gray-500 mb-4">
                         <ol class="list-reset flex gap-2">
-                            <li><a href="{{ route('dashboard') }}" class="text-blue-500 hover:underline">Dashboard</a></li>
+                            <li><a href="{{ Auth::user()->role === 'admin' ? route('dashboard') : route('mitra.dashboard') }}"
+                                    class="text-blue-500 hover:underline">Dashboard</a>
+                            </li>
                             @yield('breadcrumb')
                         </ol>
                     </nav>
@@ -49,6 +58,8 @@
             </main>
         </div>
     </div>
+
+    @stack('scripts')
 </body>
 
 </html>

@@ -24,14 +24,7 @@ class Mitra extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['nama_mitra', 'penanggung_jawab', 'email', 'password', 'nomor_telepon', 'alamat_lengkap', 'kota', 'status_verifikasi', 'dokumen_verifikasi'];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = ['password'];
+    protected $fillable = ['nama_mitra', 'penanggung_jawab', 'email', 'nomor_telepon', 'alamat_lengkap', 'status_verifikasi', 'dokumen_verifikasi', 'keterangan', 'dokumen_verifikasi'];
 
     /**
      * The attributes that should be cast.
@@ -39,8 +32,8 @@ class Mitra extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'password' => 'hashed',
-        'status_verifikasi' => 'string', // Cast ENUM to string
+        'status_verifikasi' => 'string',
+        'dokumen_verifikasi' => 'array',
     ];
 
     /**
@@ -57,5 +50,13 @@ class Mitra extends Authenticatable
     public function feedbacks()
     {
         return $this->hasMany(Feedback::class);
+    }
+
+    /**
+     * Get the user that owns the Mitra.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

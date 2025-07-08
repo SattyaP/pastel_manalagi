@@ -11,7 +11,7 @@ class Penyaluran extends Model
 
     protected $table = 'penyalurans';
 
-    protected $fillable = ['penawaran_id', 'mitra_id', 'kuantitas_diterima', 'tanggal_penyaluran', 'status_pengiriman', 'catatan'];
+    protected $fillable = ['penawaran_id', 'mitra_id', 'kuantitas_diterima', 'tanggal_penyaluran', 'image', 'status_pengiriman', 'catatan'];
 
     protected $casts = [
         'tanggal_penyaluran' => 'datetime',
@@ -40,5 +40,13 @@ class Penyaluran extends Model
     public function feedback()
     {
         return $this->hasOne(Feedback::class);
+    }
+
+    /**
+     * Get the product associated with the Penyaluran.
+     */
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
 }

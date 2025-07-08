@@ -15,12 +15,11 @@ return new class extends Migration {
             $table->string('nama_mitra');
             $table->string('penanggung_jawab');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('nomor_telepon', 20);
             $table->text('alamat_lengkap');
-            $table->string('kota', 100);
             $table->enum('status_verifikasi', ['Menunggu', 'Terverifikasi', 'Ditolak'])->default('Menunggu');
-            $table->string('dokumen_verifikasi')->nullable();
+            $table->text('dokumen_verifikasi')->nullable();
+            $table->longText('keterangan')->nullable();
             $table->timestamps();
         });
     }

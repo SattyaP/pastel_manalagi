@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
 
 class MitraController extends Controller
@@ -12,47 +13,30 @@ class MitraController extends Controller
      */
     public function index()
     {
-        //
+        $mitras = Mitra::where('status_verifikasi', '=', 'Terverifikasi')->latest()->paginate(10);
+        return view('admin.mitra.index', compact('mitras'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function pengajuanMitra()
     {
-        //
+        $mitras = Mitra::where('status_verifikasi', '=', 'Menunggu')->latest()->paginate(10);
+
+        return view('admin.mitra.pengajuan', compact('mitras'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function verifikasiMitra(Request $request, string $id)
     {
-        //
+        $mitra = Mitra::findOrFail($id);
+        $mitra->status_verifikasi = $request->input('status_verifikasi', 'Terverifikasi');
+        $mitra->save();
+
+        return redirect()->route('pengajuan.mitra')->with('success', 'Mitra berhasil diverifikasi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $mitra = Mitra::findOrFail($id);
+        return view('admin.mitra.show', compact('mitra'));
     }
 
     /**

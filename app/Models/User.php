@@ -47,4 +47,12 @@ class User extends Authenticatable
             'role' => 'string',
         ];
     }
+
+    /**
+     * Get the associated Mitra model.
+     */
+    public function mitra()
+    {
+        return $this->hasOne(Mitra::class, 'user_id', 'id');
+    }
 }

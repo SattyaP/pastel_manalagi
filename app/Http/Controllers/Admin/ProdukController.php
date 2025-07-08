@@ -62,7 +62,6 @@ class ProdukController extends Controller
         ]);
 
         if ($request->hasFile('foto_produk')) {
-            // Hapus file lama jika ada
             if ($produk->foto_produk && Storage::disk('public')->exists($produk->foto_produk)) {
                 Storage::disk('public')->delete($produk->foto_produk);
             }
@@ -79,7 +78,6 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
 
-        // Hapus file jika ada
         if ($produk->foto_produk && Storage::disk('public')->exists($produk->foto_produk)) {
             Storage::disk('public')->delete($produk->foto_produk);
         }

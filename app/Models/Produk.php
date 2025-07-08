@@ -31,7 +31,6 @@ class Produk extends Model
         return $this->hasMany(PenawaranSisaMakanan::class);
     }
 
-
     public function getFotoProdukAttribute($value)
     {
         if ($value && Storage::disk('public')->exists($value)) {
@@ -39,5 +38,13 @@ class Produk extends Model
         }
 
         return 'https://via.placeholder.com/150?text=No+Image';
+    }
+
+    /**
+     * Get the penyaluran associated with the Produk.
+     */
+    public function penyaluran()
+    {
+        return $this->hasMany(Penyaluran::class, 'produk_id');
     }
 }

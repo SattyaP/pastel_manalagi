@@ -24,7 +24,8 @@
                     <li><a href="" class="hover:underline">Contact us</a></li>
                     @auth
                         <li><a href="{{ route('registrasi.mitra') }}" class="hover:underline">Jadi Mitra</a></li>
-                        <li><a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a></li>
+                        <li><a href="{{ Auth::user()->role === 'admin' ? route('dashboard') : route('mitra.dashboard') }}"
+                                class="hover:underline">Dashboard</a></li>
                     @else
                         <li><a href="{{ route('login') }}" class="hover:underline">Login</a></li>
                         <li><a href="{{ route('registrasi.mitra') }}" class="hover:underline">Jadi Mitra</a></li>
