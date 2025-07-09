@@ -10,7 +10,7 @@
                 </br>
                 MALANG
             </h1>
-            <a href="#"
+            <a href="https://shopee.co.id/pastelmanalagi"
                 class="bg-yellow-400 hover:bg-yellow-500 text-xl text-black transform hover:scale-105 transition-transform duration-300 font-semibold py-4 px-8 rounded inline-block">
                 Order Online
             </a>
@@ -18,10 +18,10 @@
         <nav id="main-navbar" class="fixed top-22 left-0 w-full z-20 transition-all duration-300 bg-none">
             <div class="container mx-auto flex justify-center items-center py-4">
                 <ul class="flex space-x-10 font-semibold text-white text-lg">
-                    <li><a href="" class="hover:underline">Home</a></li>
-                    <li><a href="" class="hover:underline">About us</a></li>
-                    <li><a href="" class="hover:underline">Product</a></li>
-                    <li><a href="" class="hover:underline">Contact us</a></li>
+                    <li><a href="/" class="hover:underline">Home</a></li>
+                    <li><a href="#about" class="hover:underline">About us</a></li>
+                    <li><a href="#produks" class="hover:underline">Product</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact us</a></li>
                     @auth
                         <li><a href="{{ route('registrasi.mitra') }}" class="hover:underline">Jadi Mitra</a></li>
                         <li><a href="{{ Auth::user()->role === 'admin' ? route('dashboard') : route('mitra.dashboard') }}"
@@ -43,10 +43,10 @@
         </div>
 
         <a class="bg-[#B81B33] hover:bg-[#eb2240] py-4 px-8 text-lg underline-offset-1 font-semibold transform hover:scale-105 transition-transform duration-300 rounded-lg text-white"
-            href="">Daftar Sekarang</a>
+            href="{{ route('registrasi.mitra') }}">Daftar Sekarang</a>
     </div>
 
-    <div class="container mx-auto mt-20">
+    <div id="about" class="container mx-auto mt-20">
         <h3 class="text-3xl font-bold"><span class="text-[#B81B33]">Kami,</span> Pastel Manalagi</h3>
         <p class="mt-4 text-justify text-xl">UMKM kuliner asal Malang yang terkenal dengan pastel jumbo homemade dan aneka
             jajanan
@@ -105,11 +105,11 @@
                     Bersama Byte Cycle, setiap pastel lebih bermakna.</p>
 
                 <a class="bg-[#B81B33] hover:bg-[#eb2240] w-fit mt-12 py-4 px-8 text-lg underline-offset-1 font-semibold transform hover:scale-105 transition-transform duration-300 rounded-lg text-white"
-                    href="">Daftar Sekarang</a>
+                    href="{{ route('registrasi.mitra') }}">Daftar Sekarang</a>
             </div>
         </div>
 
-        <div class="container mx-auto mt-30">
+        <div id="produks" class="container mx-auto mt-30">
             <h3 class="text-3xl text-center font-bold">Produk Kami</h3>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">

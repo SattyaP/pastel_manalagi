@@ -4,34 +4,31 @@
 
 @section('content')
     <div class="container mx-auto py-10">
-        <div class="flex gap-1.5 text-md">
-            <a href="/" class="text-[#454545]">Home</a>
-            <span class="text-[#454545]"> / </span>
-            <a href="#" class="text-blue-500">Detail Product</a>w
-        </div>
+        <!-- Breadcrumb -->
+        <nav class="flex gap-1.5 text-md mb-6" aria-label="Breadcrumb">
+            <a href="/" class="text-[#454545] hover:underline">Home</a>
+            <span class="text-[#454545]">/</span>
+            <span class="text-blue-500 font-semibold">Detail Product</span>
+        </nav>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
-            <!-- Left: Product Image -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg  p-8">
+            <!-- Product Image -->
             <div class="flex justify-center items-center">
-                <img src="https://via.placeholder.com/400x400" alt="Product Image"
-                    class="rounded-lg w-full max-w-md object-cover">
+                <img src="{{ $produk->foto_produk }}" alt="Product Image"
+                    class="rounded-lg w-full max-w-sm object-cover shadow-md">
             </div>
-            <!-- Right: Product Details -->
-            <div class="flex flex-col justify-center">
-                <h2 class="text-2xl font-bold mb-4">Product Name</h2>
-                <p class="text-lg text-gray-700 mb-2">Price: <span class="font-semibold">Rp 0</span></p>
-                <p class="text-gray-600 mb-4">Product description goes here.</p>
-
-                <div class="flex items-center gap-4">
-                    <a href="#"
-                        class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
-                        Add to Cart
-                    </a>
-                    <a href="#"
-                        class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200">
-                        Checkout
-                    </a>
-                </div>
+            <!-- Product Details -->
+            <div class="flex flex-col justify-center space-y-4">
+                <h2 class="text-3xl font-bold text-gray-800">{{ $produk->nama_produk }}</h2>
+                <p class="text-xl text-gray-700">
+                    Price:
+                    <span class="font-semibold text-yellow-600">Rp. {{ number_format($produk->harga, 0, ',', '.') }}</span>
+                </p>
+                <p class="text-gray-600">{{ $produk->deskripsi }}</p>
+                <a href="#"
+                    class="bg-yellow-400 hover:bg-yellow-500 text-xl text-black font-semibold py-4 px-8 rounded-lg shadow transition-transform transform hover:scale-105 w-max">
+                    Order Online
+                </a>
             </div>
         </div>
     </div>

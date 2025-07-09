@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Mitra;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,9 @@ class EnsureVerified
             abort(403, 'Access Denied: You are not logged in.');
         }
 
-        $user = Auth::user();
-        if ($user->mitra->status_verifikasi !== 'Terverifikasi') {
+        $email = Auth::user()->email;
+        $mitra = Mitra::where('email', $email)->first();
+        if ($mitra->status_verifikasi !== 'Terverifikasi') {
             abort(403, 'Access Denied: Your account is not verified.');
         }
 

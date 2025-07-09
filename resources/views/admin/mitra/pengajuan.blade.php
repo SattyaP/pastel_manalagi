@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($mitras as $mitra)
+                @forelse ($mitras as $mitra)
                     <tr class="border-b hover:bg-gray-50">
                         <td class="px-6 py-4">{{ $mitra->nama_mitra }}</td>
                         <td class="px-6 py-4">{{ $mitra->penanggung_jawab }}</td>
@@ -35,10 +35,12 @@
                                 @csrf
                                 @method('PATCH')
                                 <select name="status_verifikasi" class="border rounded px-2 py-1">
-                                    <option value="Menunggu" {{ $mitra->status_verifikasi == 'Menunggu' ? 'selected' : '' }}>
+                                    <option value="Menunggu"
+                                        {{ $mitra->status_verifikasi == 'Menunggu' ? 'selected' : '' }}>
                                         Menunggu
                                     </option>
-                                    <option value="Terverifikasi" {{ $mitra->status_verifikasi == 'Terverifikasi' ? 'selected' : '' }}>
+                                    <option value="Terverifikasi"
+                                        {{ $mitra->status_verifikasi == 'Terverifikasi' ? 'selected' : '' }}>
                                         Terverifikasi</option>
                                     <option value="Ditolak" {{ $mitra->status_verifikasi == 'Ditolak' ? 'selected' : '' }}>
                                         Ditolak</option>
@@ -52,7 +54,13 @@
                                 class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Detail</a>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                            Tidak ada pengajuan mitra saat ini.
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
         <div class="mt-4">

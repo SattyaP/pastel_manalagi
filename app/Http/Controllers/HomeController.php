@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function showProduct($id)
     {
-        return view('show_product');
+        $produk = Produk::findOrFail($id);
+        return view('show_product', compact('produk'));
     }
 }

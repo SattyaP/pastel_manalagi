@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MitraController;
 use App\Http\Controllers\Admin\PenyaluranController;
+use App\Http\Controllers\Mitra\FeedbackController as MitraFeedbackController;
 use App\Http\Controllers\Mitra\PenawaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,10 +47,13 @@ Route::middleware(['auth', 'role:mitra'])
         Route::get('dashboard', [DashboardController::class, 'mitraIndex'])->name('mitra.dashboard');
     });
 
-Route::middleware(['auth', 'role:mitra'])
+Route::middleware(['auth', 'role:mitra', 'verified'])
     ->prefix('mitra')
     ->group(function () {
         Route::get('penawaran', [PenawaranController::class, 'penawaranMitra'])->name('penawaran.mitra');
+        Route::get('feedback', [MitraFeedbackController::class, 'index'])->name('mitra.feedback.index');
+        Route::get('feedback/create/{id}', [MitraFeedbackController::class, 'create'])->name('mitra.feedback.create');
+        Route::post('feedback/store', [MitraFeedbackController::class, 'store'])->name('mitra.feedback.store');
     });
 
 Route::post('logout', [AuthController::class, 'logout'])

@@ -57,6 +57,8 @@
             </div>
 
             <div class="text-right">
+                <a href="{{ route('produks.index') }}"
+                    class="bg-gray-600 hover:bg-gray-700 px-5 py-2.25 text-white rounded">Kembali</a>
                 <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">Update</button>
             </div>
         </form>

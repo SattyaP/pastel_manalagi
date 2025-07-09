@@ -1,4 +1,4 @@
-<div class="bg-[#B81B33]">
+<div id="contact" class="bg-[#B81B33]">
     <div class="container mx-auto py-12 text-white flex">
         <div class="flex-1">
             <h5 class="text-3xl font-semibold underline mb-6">Kontak Kami</h5>

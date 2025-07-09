@@ -62,10 +62,11 @@
                                     <p class="mb-1"><span class="font-semibold">Waktu Kadaluarsa:</span>
                                         {{ $penawaran->waktu_kadaluarsa }}</p>
                                     <p class="mb-1"><span class="font-semibold">Status:</span>
-                                        <span class="inline-block px-2 py-1 rounded text-xs font-medium
-                                                            @if($penawaran->status == 'Tersedia') bg-green-100 text-green-700
-                                                            @elseif($penawaran->status == 'Kadaluarsa') bg-red-100 text-red-700
-                                                            @else bg-yellow-100 text-yellow-700 @endif">
+                                        <span
+                                            class="inline-block px-2 py-1 rounded text-xs font-medium
+                                                                                            @if($penawaran->status == 'Tersedia') bg-green-100 text-green-700
+                                                                                            @elseif($penawaran->status == 'Kadaluarsa') bg-red-100 text-red-700
+                                                                                            @else bg-yellow-100 text-yellow-700 @endif">
                                             {{ $penawaran->status }}
                                         </span>
                                     </p>

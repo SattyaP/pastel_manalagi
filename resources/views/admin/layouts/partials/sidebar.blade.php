@@ -102,6 +102,11 @@
                 class="block py-2 px-4 rounded hover:bg-blue-100 {{ request()->is('*penawaran*') ? 'bg-blue-500 text-white' : '' }}">
                 Penawaran Sisa Makanan
             </a>
+
+            <a href="{{ route('mitra.feedback.index') }}"
+                class="block py-2 px-4 rounded hover:bg-blue-100 {{ request()->is('*feedback*') ? 'bg-blue-500 text-white' : '' }}">
+                Feedback
+            </a>
         @endif
 
         {{-- Account Management --}}
